@@ -155,7 +155,7 @@ def reshape_overlap(x,N_segment,N_overlap):
     step = N_segment - N_overlap                                               
         
     ### Reshape the array with overlap between each segment
-    x_redim = np.copy([x[ii : ii + N_segment] for ii in range(0, len(x) - N_segment, step)]) 
+    x_redim = np.copy([x[ii : ii + N_segment] for ii in range(0, len(x) - N_overlap, step)]) 
     
     ### Transform the list of vectors in an array 
     x_redim = np.stack(x_redim)    
