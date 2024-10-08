@@ -132,7 +132,7 @@ def create_window(N,type_window):
 
 
 
-def reshape_overlap(x,N_segment,N_overlap):
+def reshape_overlap(x,L_segment,L_overlap,add_zeros):
     """
     Reshape a 1D array into a 2D array, with overlap between the different rows of the array
 
@@ -140,9 +140,10 @@ def reshape_overlap(x,N_segment,N_overlap):
     ----------
     x : 1D array of floats
         signal en entrée
-    N_segment : int 
+    L_segment : int 
         number of points of the segment.
-    N_overlap : int
+    
+    L_overlap : int
         number of points of overlap
 
     Returns
@@ -151,12 +152,21 @@ def reshape_overlap(x,N_segment,N_overlap):
         Reshaped array.
 
     """
+
+    L = len(x)
+
     ### Step between two segments
-    step = N_segment - N_overlap                                               
+    step = L_segment - L_overlap                                               
+    
+    ### Ajout de zéro pour que x est le bon nombre de valeurs pour le redimensionnement
+    if add_zeros:
+        N_tot_val = (L + L_overlap*(L/L_segment) + (L_segment-L_overlap))
+        x = np.append(x,np.zeros(int(L_segment - (N_tot_val%L_segment))))
+        L = len(x)
         
     ### Reshape the array with overlap between each segment
-    x_redim = np.copy([x[ii : ii + N_segment] for ii in range(0, len(x) - N_overlap, step)]) 
-    
+    x_redim = np.copy([x[ii : ii + L_segment] for ii in range(0, L - L_overlap  , step) if ii + L_segment <= L]) # Redimenssionnement de la matrice
+
     ### Transform the list of vectors in an array 
     x_redim = np.stack(x_redim)    
     
