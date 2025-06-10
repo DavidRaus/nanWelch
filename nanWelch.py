@@ -158,7 +158,7 @@ def reshape_overlap(x,L_segment,L_overlap,add_zeros):
     ### Step between two segments
     step = L_segment - L_overlap                                               
     
-    ### Ajout de zéro pour que x est le bon nombre de valeurs pour le redimensionnement
+    ### Add zeros to x so it has the right number of values for reshaping 
     if add_zeros:
         N_tot_val = (L + L_overlap*(L/L_segment) + (L_segment-L_overlap))
         x = np.append(x,np.zeros(int(L_segment - (N_tot_val%L_segment))))
