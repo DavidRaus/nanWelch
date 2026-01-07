@@ -1,5 +1,5 @@
 """
-David Raus
+D-Raus
 21/08/24
 """
 import numpy as np
@@ -171,4 +171,5 @@ def reshape_overlap(x,L_segment,L_overlap,add_zeros):
     x_redim = np.stack(x_redim)    
     
     return x_redim
+
 
