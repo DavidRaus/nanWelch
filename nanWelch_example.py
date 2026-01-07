@@ -1,7 +1,7 @@
 """
 Example of use of the nanWelch module.
 
-David Raus
+D-Raus
 21/08/24
 """
 
@@ -101,6 +101,7 @@ def example_nanWelch():
 if __name__ == '__main__':                  
     
     example_nanWelch()
+
 
 
 
